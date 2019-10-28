@@ -5,6 +5,7 @@ import com.company.Employee.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class Main {
 
@@ -25,27 +26,32 @@ public class Main {
         employees.add(red);
         employees.add(charming);
 
-        System.out.println("Empoyees over 30");
-        System.out.println("================");
-        employees.forEach(employee -> {
-            if (employee.getAge() > 30){
-                System.out.println(employee.getName());
-            }
-        });
+        printEmployesByAge(employees, "Employes > 30", employee -> employee.getAge() > 30);
+        printEmployesByAge(employees, "\nEmployes < 30", employee -> employee.getAge() > 30);
 
-        System.out.println("\nEmployess 30 and younger");
-        System.out.println("========================");
-        employees.forEach(employee -> {
-            if (employee.getAge() <= 30){
-                System.out.println(employee.getName());
-            }
-        });
 
+//        System.out.println("\nEmployess 30 and younger");
+//        System.out.println("========================");
+//        employees.forEach(employee -> {
+//            if (employee.getAge() <= 30){
+//                System.out.println(employee.getName());
+//            }
+//        });
 
 //        for (Employee employee : employees) {
 //            if (employee.getAge() > 30) {
 //                System.out.println(employee.getAge());
 //            }
 //        }
+    }
+
+    private static void printEmployesByAge(List<Employee> employees, String ageText, Predicate<Employee> ageCondition) {
+        System.out.println(ageText);
+        System.out.println("================");
+        for (Employee employee : employees) {
+            if (ageCondition.test(employee)) {
+                System.out.println(employee.getName());
+            }
+        }
     }
 }
