@@ -5,6 +5,7 @@ import com.company.Employee.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 
 public class Main {
@@ -28,6 +29,15 @@ public class Main {
 
         printEmployesByAge(employees, "Employes > 30", employee -> employee.getAge() > 30);
         printEmployesByAge(employees, "\nEmployes < 30", employee -> employee.getAge() > 30);
+        printEmployesByAge(employees, "\nEmployes < 25", new Predicate<Employee>() {
+            @Override
+            public boolean test(Employee employee) {
+                return employee.getAge() < 25;
+            }
+        });
+
+        IntPredicate intp = i -> i > 15;
+        System.out.println(intp.test(10));
 
 
 //        System.out.println("\nEmployess 30 and younger");
