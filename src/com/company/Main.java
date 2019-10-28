@@ -55,6 +55,11 @@ public class Main {
             System.out.println(random.nextInt(100));
         }
 
+        employees.forEach(employee -> {
+            String lastName = employee.getName().substring(employee.getName().indexOf(' ') + 1);
+            System.out.println("Last name is " + lastName);
+        });
+
 
 
 
