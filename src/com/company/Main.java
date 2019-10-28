@@ -36,8 +36,12 @@ public class Main {
             }
         });
 
-        IntPredicate intp = i -> i > 15;
-        System.out.println(intp.test(10));
+        IntPredicate greaterThan15 = i -> i > 15;
+        IntPredicate lessThan15 = i -> i < 100;
+        int a = 20;
+        System.out.println(greaterThan15.test(10));
+
+        System.out.println(greaterThan15.and(lessThan15).test(a));
 
 
 //        System.out.println("\nEmployess 30 and younger");
