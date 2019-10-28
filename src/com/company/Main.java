@@ -4,9 +4,11 @@ import com.company.Employee.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Main {
 
@@ -42,6 +44,18 @@ public class Main {
         System.out.println(greaterThan15.test(10));
 
         System.out.println(greaterThan15.and(lessThan15).test(a));
+
+        Random random = new Random();
+        Supplier<Integer> randomSuplire = () -> random.nextInt(100);
+        for (int i =0; i<10; i++ ){
+            System.out.println(randomSuplire.get());
+        }
+        System.out.println("-------------------------------");
+        for (int i =0; i<10; i++ ){
+            System.out.println(random.nextInt(100));
+        }
+
+
 
 
 //        System.out.println("\nEmployess 30 and younger");
