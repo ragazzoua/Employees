@@ -5,10 +5,7 @@ import com.company.Employee.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Consumer;
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 public class Main {
 
@@ -29,7 +26,20 @@ public class Main {
         employees.add(red);
         employees.add(charming);
 
-        printEmployesByAge(employees, "Employes > 30", employee -> employee.getAge() > 30);
+        Function<Employee, String> getLastName = (Employee employee) -> {
+            return employee.getName().substring(employee.getName().indexOf(' ') + 1);
+        };
+        String lastName = getLastName.apply(employees.get(1));
+        System.out.println(lastName);
+
+        Function<Employee, String> getFirstName = (Employee employee) -> {
+            return employee.getName().substring(0, employee.getName().indexOf(' '));
+        };
+        String firstName = getFirstName.apply(employees.get(1));
+        System.out.println(firstName);
+
+
+        /*printEmployesByAge(employees, "Employes > 30", employee -> employee.getAge() > 30);
         printEmployesByAge(employees, "\nEmployes < 30", employee -> employee.getAge() > 30);
         printEmployesByAge(employees, "\nEmployes < 25", new Predicate<Employee>() {
             @Override
@@ -58,11 +68,7 @@ public class Main {
         employees.forEach(employee -> {
             String lastName = employee.getName().substring(employee.getName().indexOf(' ') + 1);
             System.out.println("Last name is " + lastName);
-        });
-
-
-
-
+        });*/
 //        System.out.println("\nEmployess 30 and younger");
 //        System.out.println("========================");
 //        employees.forEach(employee -> {
@@ -76,6 +82,22 @@ public class Main {
 //                System.out.println(employee.getAge());
 //            }
 //        }
+
+        Random random1 = new Random();
+        for (Employee employee: employees){
+            if (random1.nextBoolean()){
+                System.out.println(getName(getFirstName,employee));
+            }else {
+                System.out.println(getName(getLastName,employee));
+            }
+        }
+    }
+
+
+
+
+    private static String getName(Function<Employee, String> getName, Employee employee) {
+        return getName.apply(employee);
     }
 
     private static void printEmployesByAge(List<Employee> employees, String ageText, Predicate<Employee> ageCondition) {
