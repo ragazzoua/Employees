@@ -84,11 +84,11 @@ public class Main {
 //        }
 
         Random random1 = new Random();
-        for (Employee employee: employees){
-            if (random1.nextBoolean()){
-                System.out.println(getName(getFirstName,employee));
-            }else {
-                System.out.println(getName(getLastName,employee));
+        for (Employee employee : employees) {
+            if (random1.nextBoolean()) {
+                System.out.println(getName(getFirstName, employee));
+            } else {
+                System.out.println(getName(getLastName, employee));
             }
         }
 
@@ -97,15 +97,16 @@ public class Main {
         Function chainedFunction = upperCase.andThen(firstNameNew);
         System.out.println(chainedFunction.apply(employees.get(0)));
 
-        BiFunction<String, Employee,String> concatAge = (String name, Employee employee) ->{
+        BiFunction<String, Employee, String> concatAge = (String name, Employee employee) -> {
             return name.concat(" " + employee.getAge());
         };
 
         String uppername = upperCase.apply(employees.get(0));
         System.out.println(concatAge.apply(uppername, employees.get(0)));
+
+        IntUnaryOperator incBy5 = i -> i + 5;
+        System.out.println(incBy5.applyAsInt(10));
     }
-
-
 
 
     private static String getName(Function<Employee, String> getName, Employee employee) {
