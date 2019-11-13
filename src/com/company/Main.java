@@ -91,6 +91,18 @@ public class Main {
                 System.out.println(getName(getLastName,employee));
             }
         }
+
+        Function<Employee, String> upperCase = employee -> employee.getName().toUpperCase();
+        Function<String, String> firstNameNew = name -> name.substring(0, name.indexOf(' '));
+        Function chainedFunction = upperCase.andThen(firstNameNew);
+        System.out.println(chainedFunction.apply(employees.get(0)));
+
+        BiFunction<String, Employee,String> concatAge = (String name, Employee employee) ->{
+            return name.concat(" " + employee.getAge());
+        };
+
+        String uppername = upperCase.apply(employees.get(0));
+        System.out.println(concatAge.apply(uppername, employees.get(0)));
     }
 
 
